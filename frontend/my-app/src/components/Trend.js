@@ -47,7 +47,7 @@ const isAveraglyNegative = average => {
 const Trend = props => {
   const [width, setWidth] = React.useState(0);
   const classes = useStyles();
-
+  
   const REFERENCE = moment().endOf('day'); // fixed just for testing, use moment();
   const A_YEAR_OLD = REFERENCE.clone().subtract(1, 'year').startOf('day');
   const A_WEEK_OLD = REFERENCE.clone().subtract(1, 'week').startOf('day');

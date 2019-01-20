@@ -3,18 +3,38 @@ from google.cloud import language
 from google.cloud.language import enums
 from django.views.decorators.csrf import csrf_exempt
 
+from watson_developer_cloud import ToneAnalyzerV3
+
 import random
 import six
 import pyrebase
 import time
+import json
+
+tone_analyzer = ToneAnalyzerV3(
+    iam_apikey='nS9bchHnTmfO9PCuQ3Z5APPuASzSFPmTcdVDnSG2Tm5P',
+    version='2019-01-20')
 
 with open ("indexx/textfile.txt", "r") as readfile:
     r = readfile.readlines()
 
+
 @csrf_exempt
 def index(request):
     if request.method == 'POST':
-        main()
+        try:
+            req_post = json.loads(request.body.decode())
+            try:
+                req = req_post.get('request').get('intent').get('slots').get('story').get('value')
+                # print(req)
+                if (req != None):
+                    main(req)
+            except:
+                print("BAD POST:")
+                print(json.loads(request.body.decode()))
+        except:
+            print("PLAIN TEXT")
+            print(request.body)
         return HttpResponse("Got it")
 
     return HttpResponse("Waiting for signal")
@@ -52,10 +72,16 @@ def analysis_text(content):
     entities = client.analyze_entities(document).entities
     return sentiment, entities
 
-def main():
+def main(story):
+        # story = r[0]
+        if story == None:
+            return
+        print("Ready to analyze, story=", story)
+        sentiment, entities = analysis_text(story) # r[20])
+        json_output = tone_analyzer.tone(story).get_result()
 
 
-        sentiment, entities = analysis_text(r[0])
+
         print(sentiment.score, sentiment.magnitude)
         ename = []
         etype = []
@@ -90,6 +116,8 @@ def main():
 
         db.child("data").child("data"+str(dcounter)).child("entities").set(entitySet)
 
+        db.child("data").child("data"+str(dcounter)).child("tones").set(json_output)
+
 
 def randDate(start, end, format, prop):
     stime = time.mktime(time.strptime(start,format))
@@ -98,3 +126,5 @@ def randDate(start, end, format, prop):
     ptime = stime + prop * (etime - stime)
 
     return time.strftime(format, time.localtime(ptime))
+
+# main("fsdf");
