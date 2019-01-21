@@ -1,0 +1,92 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "teddie",
+            "intents": [
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "talk",
+                    "slots": [
+                        {
+                            "name": "story",
+                            "type": "AMAZON.Genre",
+                            "samples": [
+                                "i like someone",
+                                "i enjoy this event",
+                                "i attend a competition",
+                                "today i had a good day",
+                                "TOday i have a bad day"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "talk {story}",
+                        "can i {story}",
+                        "i need to talk {story} ",
+                        "i want to talk {story} "
+                    ]
+                }
+            ],
+            "types": []
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "talk",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "story",
+                            "type": "AMAZON.Genre",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.563593399551.1259019442778"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "ALWAYS"
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.563593399551.1259019442778",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "I'm here"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "What do you want to talk"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "I'm listening"
+                    }
+                ]
+            }
+        ]
+    }
+}
