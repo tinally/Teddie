@@ -1,15 +1,8 @@
 # Teddie  
 
-Tech used: 
-Google Cloud - (natural language processing api, cloud compute engine) 
-Amazon -  Alexa, Echo, AWS (lambda function)
-
-Django, Python, React, 
-
-https://teddie2019.com/
+https://devpost.com/software/teddie
 
 The companion you trust, the friend that’s never busy, the teddy bear by your bedside. Hello Teddie!  
-
 
 ## Inspiration and Research
 
@@ -29,8 +22,7 @@ Teddie functions include a voice feedback system with Amazon Alexa. Using Google
 
 ## Technology
 
-*add this section last
+Google Cloud - (natural language processing api, cloud compute engine) 
+Amazon -  Alexa, Echo, AWS (lambda function)
 
-
-
-
+Django, Python, React, 
