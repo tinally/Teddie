@@ -12,7 +12,7 @@
     "firebase": "^5.8.0",
     "jss": "10.0.0-alpha.3",
     "mathjs": "^5.4.1",
-    "moment": "^2.23.0",
+    "moment": "^2.29.4",
     "react": "16.8.0-alpha.0",
     "react-d3-components": "^0.9.1",
     "react-dom": "16.8.0-alpha.0",
